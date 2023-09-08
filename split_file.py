@@ -51,11 +51,19 @@ if __name__ == "__main__":
     input_file = filedialog.askopenfilename()
 
     # 让用户选择是否进行编码检测
-    should_detect_encoding = input("是否进行编码检测？(y/n): ").strip().lower() == 'y'
+    should_detect_encoding = input("是否进行编码检测？(y/n): ").strip().lower() == 'n'
 
     #input_file = "input.txt"  # 输入文件的路径
     output_folder = "output"  # 分割文件的输出文件夹
     num_splits = 100  # 要分割的文件份数
+    try:
+
+        tmp_num_splits = int(input("请输入要分割的文件数量："))
+        if tmp_num_splits > 0:
+            num_splits = tmp_num_splits
+    except ValueError:
+        print("input error number,use 100.")
+
 
     split_text_file(input_file, output_folder, num_splits, should_detect_encoding)
 
